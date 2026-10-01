@@ -322,4 +322,48 @@
   }
   initForms();
   renderCart();
+  initMotion();
+
+  /* ---------- scroll motion: reveals, trust marquee, parallax ---------- */
+  function initMotion() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Only elements below the fold get the hidden start state, so the first screen is complete at load.
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+      }, { rootMargin: "0px 0px -8% 0px" });
+      $$(".section-head, .card, .recipe, .bundle, .founder > *, .line-card, .review, .value, .club, .contact-card, .page-head").forEach(function (el) {
+        if (el.getBoundingClientRect().top < window.innerHeight) return;
+        var sibs = el.parentNode ? [].indexOf.call(el.parentNode.children, el) : 0;
+        el.style.setProperty("--d", (sibs % 4) * 80 + "ms");
+        el.classList.add("reveal");
+        io.observe(el);
+      });
+    }
+
+    var trust = $(".trust");
+    if (trust) {
+      var ul = $("ul", trust);
+      $$("li", ul).forEach(function (li) { var c = li.cloneNode(true); c.setAttribute("aria-hidden", "true"); ul.appendChild(c); });
+      trust.classList.add("trust--marquee");
+    }
+
+    var cards = $$(".line-card");
+    if (cards.length) {
+      var queued = false;
+      var parallax = function () {
+        queued = false;
+        var vh = window.innerHeight;
+        cards.forEach(function (c) {
+          var r = c.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > vh) return;
+          var off = ((r.top + r.height / 2) - vh / 2) / vh;
+          $("img", c).style.setProperty("--py", (off * -36).toFixed(1) + "px");
+        });
+      };
+      window.addEventListener("scroll", function () { if (!queued) { queued = true; requestAnimationFrame(parallax); } }, { passive: true });
+      parallax();
+    }
+  }
 })();

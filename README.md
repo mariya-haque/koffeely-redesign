@@ -13,7 +13,8 @@ Then open http://localhost:8000.
 | `assets/js/products.js` | Products, prices, Shopify variant IDs, sets and recipes. Edit the catalog here. |
 | `assets/js/main.js` | Cart, filters, product page, forms |
 | `assets/css/style.css` | All styles. Colour and font tokens are at the top. |
-| `partials/` and `build.py` | Shared header and footer. After editing a partial, run `python build.py`. |
+| `partials/` and `build.py` | Shared header and footer. After editing a partial or `pitch.html`, run `python build.py` (also rebuilds `review.html`). |
+| `assets/js/scroll-hero.js`, `assets/img/hero-frames/` | Scroll-driven hero: 40 desktop and 30 mobile frames from Koffeely's product video, plus the camera path and text-beat timings |
 | `pitch.html` | The review page for the owner, in artifact format (not committed) |
 | `review.html` | The same review page, standalone, served on the hosted site |
 | `AUDIT.md` | The same findings as plain text |

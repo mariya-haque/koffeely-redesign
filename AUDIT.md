@@ -40,7 +40,7 @@ Checked on the live site on 1 October 2026. There are 25 issues, listed most urg
 23. **Contact details are hidden** on an unlinked page, and the contact email is a Gmail address rather than an @koffeely.co one.
 
 ## Speed
-24. **The homepage hero autoplays a 1080p, 7.2 Mbps video,** even on mobile data.
+24. **The homepage hero autoplays a 1080p, 7.2 Mbps video,** even on mobile data. In the redesign, the same video plays as you scroll: the still frame shows first, then 2.2 MB of frames (0.9 MB on phones) load after the page appears.
 25. **The homepage is heavy:** about 330 KB of HTML, 83 script tags, and apps loading from 8 or more outside domains (6 for Judge.me alone).
 
 ## Owner to confirm before launch
