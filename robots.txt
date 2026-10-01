@@ -1,0 +1,3 @@
+# Redesign concept for a pitch. Not the official Koffeely store.
+User-agent: *
+Disallow: /
